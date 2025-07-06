@@ -7,22 +7,32 @@ spring:
 
   cloud:
     gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+
       routes:
         - id: user-service
           uri: lb://user-service
           predicates:
             - Path=/user/**
-      server:
-        webflux:
-          discovery:
-            locator:
-              lower-case-service-id: true
-              enabled: true
 
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka
-    registry-fetch-interval-seconds: 1
+    registry-fetch-interval-seconds: 10
+    fetch-registry: true
+    register-with-eureka: true
+
   instance:
     instance-id: Nexo-API-Gateway
+    prefer-ip-address: true
+
+logging:
+  level:
+    root: info
+    com.netflix.discovery: warn
+    org.springframework.cloud.gateway: warn
+    org.springframework.web: warn
