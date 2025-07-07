@@ -4,19 +4,97 @@ server:
 spring:
   application:
     name: api-gateway
-
   cloud:
     gateway:
-      discovery:
-        locator:
-          enabled: true
-          lower-case-service-id: true
-
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials, RETAIN_FIRST
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods: "*"
+            allowedHeaders: "*"
       routes:
         - id: user-service
           uri: lb://user-service
           predicates:
-            - Path=/user/**
+            - Path=/api/auth/**,/api/internal/**
+          filters:
+            - PreserveHostHeader
+            - StripPrefix=0
+            - name: CircuitBreaker
+              args:
+                name: userServiceCircuitBreaker
+                fallbackUri: forward:/fallback/user-service
+
+        - id: wallet-service
+          uri: lb://wallet-service
+          predicates:
+            - Path=/api/wallets/**,/api/test/**
+          filters:
+            - PreserveHostHeader
+            - StripPrefix=0
+            - name: CircuitBreaker
+              args:
+                name: walletServiceCircuitBreaker
+                fallbackUri: forward:/fallback/wallet-service
+
+        - id: frontend-server
+          uri: lb://frontend-server
+          predicates:
+            - Path=/home/**
+          filters:
+            - PreserveHostHeader
+            - StripPrefix=0
+            - name: CircuitBreaker
+              args:
+                name: frontendServerCircuitBreaker
+                fallbackUri: forward:/fallback/frontend-server
+
+# Circuit Breaker Configuration
+resilience4j:
+  circuitbreaker:
+    instances:
+      userServiceCircuitBreaker:
+        slidingWindowSize: 10
+        minimumNumberOfCalls: 5
+        permittedNumberOfCallsInHalfOpenState: 3
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        waitDurationInOpenState: 5s
+        failureRateThreshold: 50
+      walletServiceCircuitBreaker:
+        slidingWindowSize: 10
+        minimumNumberOfCalls: 5
+        permittedNumberOfCallsInHalfOpenState: 3
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        waitDurationInOpenState: 5s
+        failureRateThreshold: 50
+      frontendServerCircuitBreaker:
+        slidingWindowSize: 10
+        minimumNumberOfCalls: 5
+        permittedNumberOfCallsInHalfOpenState: 3
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+        waitDurationInOpenState: 5s
+        failureRateThreshold: 50
+  timelimiter:
+    instances:
+      userServiceCircuitBreaker:
+        timeoutDuration: 2s
+      walletServiceCircuitBreaker:
+        timeoutDuration: 2s
+      frontendServerCircuitBreaker:
+        timeoutDuration: 5s
+
+# Actuator for monitoring
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,circuitbreakers
+  endpoint:
+    health:
+      show-details: always
+      show-components: always
 
 eureka:
   client:
@@ -25,7 +103,6 @@ eureka:
     registry-fetch-interval-seconds: 10
     fetch-registry: true
     register-with-eureka: true
-
   instance:
     instance-id: Nexo-API-Gateway
     prefer-ip-address: true
