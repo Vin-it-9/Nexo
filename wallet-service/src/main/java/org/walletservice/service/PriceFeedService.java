@@ -11,12 +11,10 @@ import java.util.Map;
 @Slf4j
 public class PriceFeedService {
 
-    // In-memory cache of current prices
     private final Map<String, BigDecimal> priceCache = new HashMap<>();
 
     public PriceFeedService() {
-        // Initialize with some sample prices
-        // In a real implementation, these would come from Kafka events
+
         priceCache.put("BTC", new BigDecimal("50000.00"));
         priceCache.put("ETH", new BigDecimal("3000.00"));
         priceCache.put("USDT", new BigDecimal("1.00"));

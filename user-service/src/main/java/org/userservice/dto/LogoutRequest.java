@@ -1,19 +1,14 @@
 package org.userservice.dto;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-@Data
-public class AuthResponse {
-    private String token;
-    private String email;
-    private String fullName;
+public class LogoutRequest {
+    @NotBlank
     private String refreshToken;
-    private boolean emailVerified;
-
 }

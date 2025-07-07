@@ -89,7 +89,6 @@ public class WalletService {
                 .currency(request.getCurrency())
                 .type(TransactionType.DEPOSIT)
                 .amount(request.getAmount())
-                .address(request.getAddress())
                 .status(TransactionStatus.COMPLETED)
                 .build();
 
@@ -123,7 +122,6 @@ public class WalletService {
                 .currency(request.getCurrency())
                 .type(TransactionType.WITHDRAWAL)
                 .amount(request.getAmount())
-                .address(request.getAddress())
                 .status(TransactionStatus.PENDING)
                 .build();
 
@@ -376,7 +374,6 @@ public class WalletService {
                 .currencyFullName(transaction.getCurrency().getFullName())
                 .type(transaction.getType())
                 .amount(transaction.getAmount())
-                .address(transaction.getAddress())
                 .status(transaction.getStatus())
                 .createdAt(transaction.getCreatedAt())
                 .updatedAt(transaction.getUpdatedAt())
