@@ -10,6 +10,8 @@ import org.walletservice.dto.kafka.UserRegistrationEvent;
 import org.walletservice.service.PriceFeedService;
 import org.walletservice.service.WalletService;
 
+import java.util.logging.Logger;
+
 @Component
 @RequiredArgsConstructor
 @Slf4j
@@ -22,18 +24,15 @@ public class KafkaListeners {
 
     @KafkaListener(topics = "user-registration", groupId = "wallet-service")
     public void consumeUserRegistration(UserRegistrationEvent event) {
-        log.info("Received user registration event for user: {}", event.getUserId());
         try {
             walletService.createWallet(event.getUserId());
-            log.info("Created wallet for user: {}", event.getUserId());
         } catch (Exception e) {
-            log.error("Error creating wallet for user: {}", event.getUserId(), e);
+            Logger.getLogger(KafkaListeners.class.getName()).warning(e.getMessage());
         }
     }
 
     @KafkaListener(topics = "price-updates", groupId = "wallet-service")
     public void consumePriceUpdate(PriceUpdateEvent event) {
-        log.info("Received price update for {}: {}", event.getSymbol(), event.getPrice());
         try {
             priceFeedService.updatePrice(event.getSymbol(), event.getPrice());
         } catch (Exception e) {

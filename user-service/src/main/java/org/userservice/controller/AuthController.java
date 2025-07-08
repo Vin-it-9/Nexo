@@ -4,13 +4,14 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import org.userservice.dto.*;
 import org.userservice.entity.RefreshToken;
 import org.userservice.entity.User;
+import org.userservice.repository.UserRepository;
 import org.userservice.service.AuthenticationService;
 import org.userservice.service.RefreshTokenService;
 
@@ -29,6 +30,9 @@ public class AuthController {
 
     @Autowired
     private RefreshTokenService refreshTokenService;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @PostMapping("/register")
     public ResponseEntity<AuthResponse> register(
@@ -69,10 +73,18 @@ public class AuthController {
     }
 
     @GetMapping("/sessions")
-    public ResponseEntity<List<SessionInfoDto>> getActiveSessions(
-            @AuthenticationPrincipal User user) {
-        List<RefreshToken> tokens = refreshTokenService.findAllActiveTokensByUser(user);
+    public ResponseEntity<?> getActiveSessions(Authentication authentication) {
 
+        if (authentication == null || !authentication.isAuthenticated()) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body(Map.of("error", "Unauthorized", "message", "Authentication required"));
+        }
+
+        String userEmail = authentication.getName();
+
+        User user = userRepository.findByEmail(userEmail)
+                .orElseThrow(() -> new RuntimeException("User not found with email: " + userEmail));
+        List<RefreshToken> tokens = refreshTokenService.findAllActiveTokensByUser(user);
         List<SessionInfoDto> sessions = tokens.stream()
                 .map(token -> SessionInfoDto.builder()
                         .id(token.getToken())
@@ -86,11 +98,22 @@ public class AuthController {
         return ResponseEntity.ok(sessions);
     }
 
+
+
     @DeleteMapping("/sessions/{sessionId}")
     public ResponseEntity<Void> terminateSession(
-            @AuthenticationPrincipal User user,
+            Authentication authentication,
             @PathVariable String sessionId) {
+        if (authentication == null || !authentication.isAuthenticated()) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+
+        String userEmail = authentication.getName();
+
+        User user = userRepository.findByEmail(userEmail)
+                .orElseThrow(() -> new RuntimeException("User not found with email: " + userEmail));
+
         refreshTokenService.terminateSession(sessionId, user);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.noContent().build();
     }
 }

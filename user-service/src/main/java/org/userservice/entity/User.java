@@ -60,6 +60,17 @@ public class User implements UserDetails {
     @Builder.Default
     private int failedAttempts = 0;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "auth_provider")
+    @Builder.Default
+    private AuthProvider provider = AuthProvider.LOCAL;
+
+    @Column(name = "provider_id")
+    private String providerId;
+
+    @Column(name = "image_url")
+    private String imageUrl;
+
     @PrePersist
     protected void onCreate() {
         createdAt = LocalDateTime.now();

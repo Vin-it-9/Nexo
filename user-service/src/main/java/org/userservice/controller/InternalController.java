@@ -21,7 +21,6 @@ public class InternalController {
     private UserDetailsServiceImpl userDetailsService;
 
 
-
     @PostMapping("/validate-token")
     public ResponseEntity<Map<String, Object>> validateToken(@RequestHeader("Authorization") String authHeader) {
         String token = authHeader.substring(7);

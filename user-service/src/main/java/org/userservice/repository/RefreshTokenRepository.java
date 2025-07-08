@@ -13,6 +13,7 @@ public interface RefreshTokenRepository extends JpaRepository<RefreshToken, Inte
     Optional<RefreshToken> findByToken(String token);
     List<RefreshToken> findAllByUserAndRevokedFalse(User user);
 
+
     @Modifying
     @Query("UPDATE RefreshToken r SET r.revoked = true WHERE r.user = ?1 AND r.revoked = false")
     void revokeAllUserTokens(User user);

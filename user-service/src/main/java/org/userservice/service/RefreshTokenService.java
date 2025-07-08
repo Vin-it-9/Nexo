@@ -85,7 +85,6 @@ public class RefreshTokenService {
     public RefreshToken verifyExpiration(RefreshToken token) {
         if (token.isExpired() || token.isRevoked()) {
             refreshTokenRepository.delete(token);
-            throw new TokenRefreshException("Refresh token was expired or revoked. Please sign in again.");
         }
 
         return token;
@@ -110,13 +109,15 @@ public class RefreshTokenService {
 
     @Transactional
     public void terminateSession(String tokenId, User user) {
+        if (user == null) {
+            throw new IllegalArgumentException("User cannot be null");
+        }
         RefreshToken token = refreshTokenRepository.findByToken(tokenId)
                 .orElseThrow(() -> new RuntimeException("Session not found"));
 
         if (!token.getUser().getId().equals(user.getId())) {
             throw new RuntimeException("You don't have permission to terminate this session");
         }
-
         token.setRevoked(true);
         refreshTokenRepository.save(token);
     }

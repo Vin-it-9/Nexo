@@ -51,6 +51,8 @@ spring:
                 name: frontendServerCircuitBreaker
                 fallbackUri: forward:/fallback/frontend-server
 
+
+
 # Circuit Breaker Configuration
 resilience4j:
   circuitbreaker:

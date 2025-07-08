@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Account - Nexo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body class="bg-light">
+<div th:replace="fragments/header :: header"></div>
+
+<div class="container py-5">
+    <div class="row">
+        <!-- Account Navigation Sidebar -->
+        <div class="col-lg-3 mb-4">
+            <div class="list-group shadow-sm">
+                <a href="#" class="list-group-item list-group-item-action active">
+                    <i class="fas fa-user me-2"></i> Profile
+                </a>
+                <a href="#" class="list-group-item list-group-item-action">
+                    <i class="fas fa-key me-2"></i> Security
+                </a>
+                <a href="#" class="list-group-item list-group-item-action">
+                    <i class="fas fa-shield-alt me-2"></i> Sessions
+                </a>
+                <a href="#" class="list-group-item list-group-item-action">
+                    <i class="fas fa-history me-2"></i> Activity Log
+                </a>
+                <a href="#" class="list-group-item list-group-item-action text-danger" id="logoutButton">
+                    <i class="fas fa-sign-out-alt me-2"></i> Logout
+                </a>
+            </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="col-lg-9">
+            <!-- Alert container -->
+            <div id="alert-container"></div>
+
+            <!-- User Profile -->
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">Your Profile</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-4">
+                        <div class="col-md-3 text-center">
+                            <img id="profileImage" src="https://via.placeholder.com/150"
+                                 class="img-thumbnail rounded-circle mb-2" alt="Profile Picture" width="150" height="150">
+                        </div>
+                        <div class="col-md-9">
+                            <h3 id="userName">Loading...</h3>
+                            <p class="text-muted" id="userEmail">Loading...</p>
+
+                            <div class="d-flex mt-3">
+                                <div class="me-3">
+                                    <small class="text-muted">Account Type</small>
+                                    <div id="authProvider">Loading...</div>
+                                </div>
+                                <div class="me-3">
+                                    <small class="text-muted">Member Since</small>
+                                    <div id="createdAt">Loading...</div>
+                                </div>
+                                <div>
+                                    <small class="text-muted">Email Verified</small>
+                                    <div id="emailVerified">Loading...</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h5>Personal Information</h5>
+                    <hr>
+                    <form id="profileForm">
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="fullName" class="form-label">Full Name</label>
+                                <input type="text" class="form-control" id="fullName" name="fullName" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="email" class="form-label">Email Address</label>
+                                <input type="email" class="form-control" id="email" name="email" readonly>
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-end">
+                            <button type="submit" class="btn btn-primary" id="saveProfileButton">
+                                <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                                <i class="fas fa-save me-2"></i> Save Changes
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Sessions Management -->
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                    <h4 class="mb-0">Active Sessions</h4>
+                    <button id="refreshSessions" class="btn btn-sm btn-light">
+                        <i class="fas fa-sync-alt"></i> Refresh
+                    </button>
+                </div>
+                <div class="card-body">
+                    <div id="sessionsContainer">
+                        <div class="text-center py-4">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                            <p class="mt-2">Loading your active sessions...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="fragments/footer :: footer"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{/js/auth.js}"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', async function() {
+        // Check if user is authenticated
+        if (!Auth.isAuthenticated()) {
+            window.location.href = '/login';
+            return;
+        }
+
+        // Load user profile
+        try {
+            await loadUserProfile();
+        } catch (error) {
+            showAlert('error', 'Failed to load user profile: ' + error.message);
+        }
+
+        // Load active sessions
+        try {
+            await loadActiveSessions();
+        } catch (error) {
+            showAlert('error', 'Failed to load sessions: ' + error.message);
+        }
+
+        // Set up event listeners
+        document.getElementById('refreshSessions').addEventListener('click', loadActiveSessions);
+        document.getElementById('logoutButton').addEventListener('click', handleLogout);
+        document.getElementById('profileForm').addEventListener('submit', handleProfileUpdate);
+    });
+
+    // Load user profile data
+    async function loadUserProfile() {
+        const profile = await Auth.getUserProfile();
+
+        // Update profile information
+        document.getElementById('userName').textContent = profile.fullName || 'Unknown';
+        document.getElementById('userEmail').textContent = profile.email || 'Unknown';
+        document.getElementById('fullName').value = profile.fullName || '';
+        document.getElementById('email').value = profile.email || '';
+
+        // Update profile image if available
+        if (profile.imageUrl) {
+            document.getElementById('profileImage').src = profile.imageUrl;
+        }
+
+        // Update additional info
+        document.getElementById('authProvider').textContent = profile.provider || 'LOCAL';
+        document.getElementById('createdAt').textContent = formatDate(profile.createdAt);
+
+        const emailVerifiedEl = document.getElementById('emailVerified');
+        if (profile.emailVerified) {
+            emailVerifiedEl.innerHTML = '<span class="badge bg-success"><i class="fas fa-check-circle"></i> Verified</span>';
+        } else {
+            emailVerifiedEl.innerHTML = '<span class="badge bg-warning"><i class="fas fa-exclamation-circle"></i> Pending</span>';
+        }
+    }
+
+    // Load active sessions
+    async function loadActiveSessions() {
+        const sessionsContainer = document.getElementById('sessionsContainer');
+
+        // Show loading
+        sessionsContainer.innerHTML = `
+                <div class="text-center py-4">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p class="mt-2">Loading your active sessions...</p>
+                </div>
+            `;
+
+        try {
+            const sessions = await Auth.getActiveSessions();
+
+            if (sessions.length === 0) {
+                sessionsContainer.innerHTML = '<div class="alert alert-info">No active sessions found.</div>';
+                return;
+            }
+
+            // Get current refresh token
+            const currentRefreshToken = localStorage.getItem('refreshToken');
+
+            // Create HTML for sessions
+            let html = '';
+            sessions.forEach(session => {
+                const isCurrent = session.id === currentRefreshToken;
+                const deviceName = getDeviceName(session.userAgent);
+
+                html += `
+                        <div class="card mb-3 ${isCurrent ? 'border-success' : ''}">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <div class="d-flex align-items-center mb-2">
+                                            <i class="fas fa-${getDeviceIcon(deviceName)} me-2"></i>
+                                            <strong>${deviceName}</strong>
+                                            ${isCurrent ? '<span class="badge bg-success ms-2">Current Session</span>' : ''}
+                                        </div>
+                                        <div class="text-muted small">
+                                            <div><i class="fas fa-map-marker-alt me-2"></i> ${session.ipAddress}</div>
+                                            <div><i class="fas fa-clock me-2"></i> Started: ${formatDate(session.createdAt)}</div>
+                                            <div><i class="fas fa-hourglass-end me-2"></i> Expires: ${formatDate(session.expiresAt)}</div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5 text-md-end mt-3 mt-md-0">
+                                        ${!isCurrent ? `
+                                            <button class="btn btn-outline-danger btn-sm terminate-session" data-session-id="${session.id}">
+                                                <i class="fas fa-times me-1"></i> Terminate Session
+                                            </button>
+                                        ` : `
+                                            <button class="btn btn-outline-secondary btn-sm" disabled>
+                                                <i class="fas fa-check-circle me-1"></i> Current Session
+                                            </button>
+                                        `}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+            });
+
+            sessionsContainer.innerHTML = html;
+
+            // Add event listeners for terminate buttons
+            document.querySelectorAll('.terminate-session').forEach(button => {
+                button.addEventListener('click', async function() {
+                    const sessionId = this.dataset.sessionId;
+                    await terminateSession(sessionId);
+                });
+            });
+        } catch (error) {
+            sessionsContainer.innerHTML = `<div class="alert alert-danger">${error.message || 'Failed to load sessions'}</div>`;
+            throw error;
+        }
+    }
+
+    // Handle profile update form submission
+    async function handleProfileUpdate(e) {
+        e.preventDefault();
+
+        const fullName = document.getElementById('fullName').value;
+        const button = document.getElementById('saveProfileButton');
+        const spinner = button.querySelector('.spinner-border');
+
+        // Disable button and show spinner
+        button.disabled = true;
+        spinner.classList.remove('d-none');
+
+        try {
+            await Auth.updateUserProfile({ fullName });
+            showAlert('success', 'Profile updated successfully!');
+            await loadUserProfile(); // Reload profile data
+        } catch (error) {
+            showAlert('error', error.message || 'Failed to update profile');
+        } finally {
+            // Re-enable button and hide spinner
+            button.disabled = false;
+            spinner.classList.add('d-none');
+        }
+    }
+
+    // Terminate a session
+    async function terminateSession(sessionId) {
+        if (!confirm('Are you sure you want to terminate this session? This will log out that device.')) {
+            return;
+        }
+
+        try {
+            await Auth.terminateSession(sessionId);
+            showAlert('success', 'Session terminated successfully');
+            await loadActiveSessions(); // Reload sessions
+        } catch (error) {
+            showAlert('error', error.message || 'Failed to terminate session');
+        }
+    }
+
+    // Handle logout button click
+    async function handleLogout() {
+        if (confirm('Are you sure you want to log out?')) {
+            try {
+                await Auth.logout();
+                window.location.href = '/login?logout=true';
+            } catch (error) {
+                showAlert('error', error.message || 'Failed to log out');
+            }
+        }
+    }
+
+    // Helper function to show alerts
+    function showAlert(type, message) {
+        const alertContainer = document.getElementById('alert-container');
+        const alertClass = type === 'error' ? 'alert-danger' : 'alert-success';
+
+        alertContainer.innerHTML = `
+                <div class="alert ${alertClass} alert-dismissible fade show" role="alert">
+                    ${message}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            `;
+
+        // Scroll to the alert
+        alertContainer.scrollIntoView({ behavior: 'smooth' });
+
+        // Auto-dismiss after 5 seconds for success messages
+        if (type === 'success') {
+            setTimeout(() => {
+                const alert = alertContainer.querySelector('.alert');
+                if (alert) {
+                    alert.classList.remove('show');
+                    setTimeout(() => alertContainer.innerHTML = '', 150);
+                }
+            }, 5000);
+        }
+    }
+
+    // Format date
+    function formatDate(dateString) {
+        if (!dateString) return 'Unknown';
+        return new Date(dateString).toLocaleString();
+    }
+
+    // Get device name from user agent
+    function getDeviceName(userAgent) {
+        if (!userAgent) return 'Unknown Device';
+
+        if (userAgent.includes('Windows')) return 'Windows';
+        if (userAgent.includes('Mac')) return 'Mac';
+        if (userAgent.includes('iPhone')) return 'iPhone';
+        if (userAgent.includes('iPad')) return 'iPad';
+        if (userAgent.includes('Android')) return 'Android';
+        if (userAgent.includes('Linux')) return 'Linux';
+
+        return 'Unknown Device';
+    }
+
+    // Get icon for device
+    function getDeviceIcon(deviceName) {
+        switch (deviceName) {
+            case 'Windows': return 'laptop';
+            case 'Mac': return 'apple';
+            case 'iPhone': return 'mobile-alt';
+            case 'iPad': return 'tablet-alt';
+            case 'Android': return 'mobile-alt';
+            case 'Linux': return 'desktop';
+            default: return 'question-circle';
+        }
+    }
+</script>
+</body>
+</html>

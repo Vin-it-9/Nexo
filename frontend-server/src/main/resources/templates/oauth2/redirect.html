@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Processing Login - Nexo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body class="bg-light">
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-6 text-center">
+            <div class="card shadow">
+                <div class="card-body p-5">
+                    <div class="spinner-border text-primary mb-4" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <h3>Processing your login</h3>
+                    <p class="text-muted">Please wait while we complete the authentication process...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script th:src="@{/js/auth.js}"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Parse URL parameters
+        const params = new URLSearchParams(window.location.search);
+        const token = params.get('token');
+        const refreshToken = params.get('refreshToken');
+        const error = params.get('error');
+
+        if (error) {
+            // Handle authentication error
+            window.location.href = '/login?error=' + encodeURIComponent(error);
+        } else if (token && refreshToken) {
+            // Store tokens
+            localStorage.setItem('token', token);
+            localStorage.setItem('refreshToken', refreshToken);
+            localStorage.setItem('authTime', Date.now().toString());
+
+            // Get user info from token
+            const userInfo = Auth.getUserInfo();
+            if (userInfo && userInfo.sub) {
+                localStorage.setItem('userEmail', userInfo.sub);
+            }
+
+            // Redirect to dashboard or home page
+            window.location.href = '/dashboard';
+        } else {
+            // Missing tokens or invalid response
+            window.location.href = '/login?error=' + encodeURIComponent('Authentication failed. Please try again.');
+        }
+    });
+</script>
+</body>
+</html>

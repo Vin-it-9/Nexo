@@ -17,14 +17,28 @@ import java.util.Arrays;
 public class SecurityConfig {
 
     @Bean
-    public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
-        http
+    public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) {
+        return http
                 .csrf(ServerHttpSecurity.CsrfSpec::disable)
                 .authorizeExchange(exchanges -> exchanges
-                        .pathMatchers("/**").permitAll()
-                );
-        return http.build();
+                        .pathMatchers(
+                                "/",
+                                "/swagger-ui/**",
+                                "/v3/api-docs/**",
+                                "/*/swagger-ui/**",
+                                "/*/v3/api-docs/**",
+                                "/frontend/**",
+                                "/user/**",
+                                "/wallet/**",
+                                "/fallback/**",
+                                "/actuator/**",
+                                "/**"
+                        ).permitAll()
+                        .anyExchange().authenticated()
+                )
+                .build();
     }
+
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {

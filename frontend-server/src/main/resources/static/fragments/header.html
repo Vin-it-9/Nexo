@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+<header th:fragment="header">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <img src="/images/logo.png" alt="Nexo" height="30" onerror="this.src='/images/logo-placeholder.png'">
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarMain" aria-controls="navbarMain"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarMain">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/markets">Markets</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/trade">Trade</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">About</a>
+                    </li>
+                </ul>
+
+                <!-- Auth Buttons -->
+                <div class="d-flex">
+                    <div id="unauthenticatedControls">
+                        <a href="/login" class="btn btn-outline-light me-2">Login</a>
+                        <a href="/register" class="btn btn-primary">Sign Up</a>
+                    </div>
+                    <div id="authenticatedControls" style="display: none;">
+                        <div class="dropdown">
+                            <button class="btn btn-light dropdown-toggle" type="button"
+                                    id="userDropdown" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                <i class="fas fa-user-circle me-1"></i>
+                                <span id="navUserEmail">User</span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                <li>
+                                    <a class="dropdown-item" href="/account">
+                                        <i class="fas fa-user me-2"></i> My Account
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="/dashboard">
+                                        <i class="fas fa-tachometer-alt me-2"></i> Dashboard
+                                    </a>
+                                </li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                    <a class="dropdown-item text-danger" href="#" id="navLogoutButton">
+                                        <i class="fas fa-sign-out-alt me-2"></i> Logout
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <script th:inline="javascript">
+        document.addEventListener('DOMContentLoaded', function() {
+            // Update the navigation based on authentication status
+            updateNavAuth();
+
+            // Add logout event handler
+            document.getElementById('navLogoutButton').addEventListener('click', async function(e) {
+                e.preventDefault();
+                if (confirm('Are you sure you want to log out?')) {
+                    try {
+                        await Auth.logout();
+                        window.location.href = '/login?logout=true';
+                    } catch (error) {
+                        console.error('Logout error:', error);
+                    }
+                }
+            });
+        });
+
+        function updateNavAuth() {
+            const isAuth = window.Auth && Auth.isAuthenticated();
+            document.getElementById('authenticatedControls').style.display = isAuth ? 'block' : 'none';
+            document.getElementById('unauthenticatedControls').style.display = isAuth ? 'none' : 'block';
+
+            if (isAuth) {
+                const userEmail = localStorage.getItem('userEmail');
+                if (userEmail) {
+                    document.getElementById('navUserEmail').textContent = userEmail;
+                }
+            }
+        }
+    </script>
+</header>
+</body>
+</html>

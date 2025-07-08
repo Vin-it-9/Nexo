@@ -1,0 +1,113 @@
+/* General styles */
+body {
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Card styling */
+.card {
+    border-radius: 10px;
+    overflow: hidden;
+    border: none;
+}
+
+.card-header {
+    background-color: #0d6efd;
+    padding: 20px;
+}
+
+.card-body {
+    padding: 25px;
+}
+
+/* Shadow effects */
+.shadow-sm {
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+}
+
+.shadow {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+/* OAuth button styling */
+.btn-social {
+    position: relative;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-left: 44px;
+    border: 1px solid #ddd;
+}
+
+.btn-social > i {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 38px;
+    line-height: 38px;
+    font-size: 1.2em;
+    text-align: center;
+    border-right: 1px solid rgba(0,0,0,0.1);
+}
+
+.btn-social.btn-block {
+    display: block;
+    width: 100%;
+}
+
+.btn-google {
+    color: #545454;
+    background-color: #ffffff;
+}
+
+.btn-google:hover {
+    background-color: #f8f9fa;
+    border-color: #ced4da;
+}
+
+/* Divider with text */
+.divider-with-text {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #6c757d;
+}
+
+.divider-with-text::before,
+.divider-with-text::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.divider-with-text::before {
+    margin-right: 1em;
+}
+
+.divider-with-text::after {
+    margin-left: 1em;
+}
+
+/* Profile page styles */
+.img-thumbnail {
+    padding: 0.25rem;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 50%;
+    max-width: 100%;
+    height: auto;
+}
+
+/* Session styling */
+.border-success {
+    border-left: 4px solid #28a745 !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .card-body {
+        padding: 15px;
+    }
+}
