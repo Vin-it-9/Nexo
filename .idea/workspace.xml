@@ -4,66 +4,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0575a283-598a-4cb1-adae-fdcd07f15fbd" name="Changes" comment="verification-email feature add">
-      <change afterPath="$PROJECT_DIR$/.idea/git_toolbox_prj.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend-server/src/main/java/org/frontendserver/config/JwtAuthenticationFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend-server/src/main/java/org/frontendserver/config/OpenApiConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend-server/src/main/java/org/frontendserver/config/RestTemplateConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend-server/src/main/java/org/frontendserver/config/RestTemplateErrorHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend-server/src/main/java/org/frontendserver/config/UserServiceClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend-server/src/main/java/org/frontendserver/controller/AuthApiController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend-server/src/main/java/org/frontendserver/controller/ProtectedApiController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend-server/src/main/java/org/frontendserver/controller/PublicApiController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend-server/src/main/java/org/frontendserver/controller/WebController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend-server/src/main/java/org/frontendserver/dto/LoginRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend-server/src/main/java/org/frontendserver/dto/RefreshTokenRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend-server/src/main/java/org/frontendserver/dto/RegisterRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend-server/src/main/java/org/frontendserver/dto/SessionInfoDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend-server/src/main/java/org/frontendserver/exception/GlobalExceptionHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend-server/src/main/resources/static/fragments/footer.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend-server/src/main/resources/static/fragments/header.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend-server/src/main/resources/static/js/auth.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend-server/src/main/resources/static/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend-server/src/main/resources/templates/account/profile.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend-server/src/main/resources/templates/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend-server/src/main/resources/templates/oauth2/redirect.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend-server/src/main/resources/templates/register.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/org/userservice/config/oauth2/CustomOAuth2UserService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/org/userservice/config/oauth2/GoogleOAuth2UserInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/org/userservice/config/oauth2/OAuth2AuthenticationFailureHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/org/userservice/config/oauth2/OAuth2AuthenticationSuccessHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/org/userservice/config/oauth2/OAuth2UserInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/org/userservice/config/oauth2/OAuth2UserInfoFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/org/userservice/config/oauth2/UserPrincipal.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/org/userservice/controller/OAuth2Controller.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/org/userservice/entity/AuthProvider.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/user-service/src/main/java/org/userservice/exception/OAuth2AuthenticationProcessingException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wallet-service/src/main/java/org/walletservice/annotation/RateLimit.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wallet-service/src/main/java/org/walletservice/aspect/RateLimitAspect.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wallet-service/src/main/java/org/walletservice/config/RateLimitConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wallet-service/src/main/java/org/walletservice/dto/ErrorResponse.java" afterDir="false" />
+    <list default="true" id="241fc297-1d00-4d3d-9e43-6ba62b727a1a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/pricefeed-service/src/main/java/org/client/AlternativeApiClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pricefeed-service/src/main/java/org/client/CoinMarketCapClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pricefeed-service/src/main/java/org/client/NotificationClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pricefeed-service/src/main/java/org/controller/EnhancedPriceController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pricefeed-service/src/main/java/org/controller/PriceController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pricefeed-service/src/main/java/org/dto/CoinMarketCapResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pricefeed-service/src/main/java/org/dto/CryptoCurrency.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pricefeed-service/src/main/java/org/dto/NotificationRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pricefeed-service/src/main/java/org/dto/PriceResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pricefeed-service/src/main/java/org/kafka/PriceEventProducer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pricefeed-service/src/main/java/org/openapi/PricefeedApiApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pricefeed-service/src/main/java/org/scheduler/PriceUpdateScheduler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pricefeed-service/src/main/java/org/service/CacheEvictionService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pricefeed-service/src/main/java/org/service/FailoverPriceService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pricefeed-service/src/main/java/org/service/MarketAnalysisService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pricefeed-service/src/main/java/org/service/NotificationService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pricefeed-service/src/main/java/org/service/PriceService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pricefeed-service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/git_toolbox_prj.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-gateway/src/main/java/org/nexo/apigateway/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/java/org/nexo/apigateway/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api-gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-server/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-server/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-server/src/main/java/org/frontendserver/HomeController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-server/src/main/java/org/frontendserver/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-server/src/main/java/org/frontendserver/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-server/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-server/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend-server/src/main/resources/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend-server/src/main/resources/templates/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/org/userservice/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/org/userservice/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/org/userservice/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/org/userservice/controller/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/org/userservice/controller/InternalController.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/org/userservice/controller/InternalController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/org/userservice/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/org/userservice/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/org/userservice/repository/RefreshTokenRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/org/userservice/repository/RefreshTokenRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/java/org/userservice/service/RefreshTokenService.java" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/java/org/userservice/service/RefreshTokenService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/user-service/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-service/src/main/resources/templates/verification-email.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-service/src/main/java/org/walletservice/config/KafkaListeners.java" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-service/src/main/java/org/walletservice/config/KafkaListeners.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-service/src/main/java/org/walletservice/controller/WalletController.java" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-service/src/main/java/org/walletservice/controller/WalletController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wallet-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/wallet-service/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,8 +37,6 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Exception" />
-        <option value="HTML File" />
         <option value="Class" />
       </list>
     </option>
@@ -82,23 +44,23 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;Vin-it-9&quot;
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "Vin-it-9"
   }
-}</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/Vin-it-9/Nexo.git&quot;,
-    &quot;accountId&quot;: &quot;0a701ac8-763c-43f6-baaa-9e26fb6bcd1a&quot;
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/Vin-it-9/Nexo.git",
+    "accountId": "0a701ac8-763c-43f6-baaa-9e26fb6bcd1a"
   }
-}</component>
-  <component name="ProjectColorInfo">{
-  &quot;customColor&quot;: &quot;&quot;,
-  &quot;associatedIndex&quot;: 8
-}</component>
-  <component name="ProjectId" id="2zYLVlcR3DR4GwmlKPLWgc0kOLP" />
+}]]></component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 8
+}]]></component>
+  <component name="ProjectId" id="2zdrV4Tpb3BwIzKVK0LmIkBrm6s" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
@@ -106,58 +68,110 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;Notification.DisplayName-DoNotAsk-DatabaseConfigFileWatcher.found&quot;: &quot;Database connection parameters found&quot;,
-    &quot;Notification.DisplayName-DoNotAsk-LSP/window/showMessage&quot;: &quot;LSP/window/showMessage&quot;,
-    &quot;Notification.DoNotAsk-DatabaseConfigFileWatcher.found&quot;: &quot;true&quot;,
-    &quot;Notification.DoNotAsk-LSP/window/showMessage&quot;: &quot;true&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Spring Boot.DiscoveryServerApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.FrontendServerApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.UserService.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.gateway.executor&quot;: &quot;Run&quot;,
-    &quot;Spring Boot.wallet-service.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_directory_selection&quot;: &quot;C:/Users/Vineet/Desktop/Nexo/frontend-server/src/main/java/org/frontendserver&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Vineet/Desktop/Nexo/frontend-server/src/main/java/org/frontendserver/config&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;run.configurations.included.in.services&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;application.passwordSafe&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Maven.pricefeed-service [clean,install...].executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Quarkus.pricefeed-service.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "run.configurations.included.in.services": "true",
+    "settings.editor.selected.configurable": "application.passwordSafe",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Vineet\Desktop\Nexo\frontend-server\src\main\java\org\frontendserver\config" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Vineet\Desktop\Nexo\frontend-server\src\main\resources\templates" />
-    </key>
-  </component>
+}]]></component>
   <component name="RunDashboard">
     <option name="configurationTypes">
       <set>
-        <option value="KtorApplicationConfigurationType" />
-        <option value="MicronautRunConfigurationType" />
         <option value="QuarkusRunConfigurationType" />
         <option value="SpringBootApplicationConfigurationType" />
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.DiscoveryServerApplication">
+  <component name="RunManager" selected="Maven.pricefeed-service [clean,install...]">
+    <configuration name="pricefeed-service [clean,install...]" type="MavenRunConfiguration" factoryName="Maven" nameIsGenerated="true">
+      <MavenSettings>
+        <option name="myGeneralSettings" />
+        <option name="myRunnerSettings" />
+        <option name="myRunnerParameters">
+          <MavenRunnerParameters>
+            <option name="cmdOptions" />
+            <option name="profiles">
+              <set />
+            </option>
+            <option name="goals">
+              <list>
+                <option value="clean" />
+                <option value="install" />
+                <option value="quarkus:dev" />
+              </list>
+            </option>
+            <option name="multimoduleDir" />
+            <option name="pomFileName" />
+            <option name="profilesMap">
+              <map />
+            </option>
+            <option name="projectsCmdOptionValues">
+              <list />
+            </option>
+            <option name="resolveToWorkspace" value="false" />
+            <option name="workingDirPath" value="$PROJECT_DIR$/pricefeed-service" />
+          </MavenRunnerParameters>
+        </option>
+      </MavenSettings>
+      <method v="2" />
+    </configuration>
+    <configuration name="pricefeed-service" type="QuarkusRunConfigurationType" factoryName="Quarkus" nameIsGenerated="true">
+      <module name="pricefeed-service" />
+      <QsMavenRunConfiguration>
+        <MavenSettings>
+          <option name="myGeneralSettings" />
+          <option name="myRunnerSettings" />
+          <option name="myRunnerParameters">
+            <MavenRunnerParameters>
+              <option name="cmdOptions" />
+              <option name="profiles">
+                <set />
+              </option>
+              <option name="goals">
+                <list>
+                  <option value="quarkus:dev" />
+                </list>
+              </option>
+              <option name="multimoduleDir" />
+              <option name="pomFileName" value="pom.xml" />
+              <option name="profilesMap">
+                <map />
+              </option>
+              <option name="projectsCmdOptionValues">
+                <list />
+              </option>
+              <option name="resolveToWorkspace" value="false" />
+              <option name="workingDirPath" value="$PROJECT_DIR$/pricefeed-service" />
+            </MavenRunnerParameters>
+          </option>
+        </MavenSettings>
+        <targetMavenLocalRepo />
+        <emulateTerminal>false</emulateTerminal>
+        <profile>dev</profile>
+      </QsMavenRunConfiguration>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Api-Gateway" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="api-gateway" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="org.nexo.apigateway.ApiGatewayApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="DiscoveryServerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="discovery-server" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="org.nexo.discoveryserver.DiscoveryServerApplication" />
@@ -180,20 +194,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="gateway" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="api-gateway" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="org.nexo.apigateway.ApiGatewayApplication" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="wallet-service" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+    <configuration name="WalletServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="wallet-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="org.walletservice.WalletServiceApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Maven.pricefeed-service [clean,install...]" />
+      <item itemvalue="Quarkus.pricefeed-service" />
+      <item itemvalue="Spring Boot.Api-Gateway" />
+      <item itemvalue="Spring Boot.DiscoveryServerApplication" />
+      <item itemvalue="Spring Boot.FrontendServerApplication" />
+      <item itemvalue="Spring Boot.UserService" />
+      <item itemvalue="Spring Boot.WalletServiceApplication" />
+    </list>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -205,33 +221,16 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="0575a283-598a-4cb1-adae-fdcd07f15fbd" name="Changes" comment="" />
-      <created>1751903087197</created>
+      <changelist id="241fc297-1d00-4d3d-9e43-6ba62b727a1a" name="Changes" comment="" />
+      <created>1752071813268</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1751903087197</updated>
-      <workItem from="1751903090501" duration="911000" />
-      <workItem from="1751909036428" duration="4082000" />
-      <workItem from="1751977862376" duration="9590000" />
-      <workItem from="1751989105644" duration="405000" />
-      <workItem from="1752000483870" duration="6445000" />
+      <updated>1752071813268</updated>
+      <workItem from="1752071816313" duration="11822000" />
     </task>
-    <task id="LOCAL-00001" summary="verification-email feature add">
-      <option name="closed" value="true" />
-      <created>1751909831268</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1751909831268</updated>
-    </task>
-    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="verification-email feature add" />
-    <option name="LAST_COMMIT_MESSAGE" value="verification-email feature add" />
   </component>
 </project>

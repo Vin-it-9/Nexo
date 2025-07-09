@@ -4,6 +4,8 @@
     <file url="file://$PROJECT_DIR$/api-gateway/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/discovery-server/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/frontend-server/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/pricefeed-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/pricefeed-service/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/user-service/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/wallet-service/src/main/java" charset="UTF-8" />
   </component>

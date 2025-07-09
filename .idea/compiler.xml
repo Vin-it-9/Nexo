@@ -10,6 +10,7 @@
         <module name="frontend-server" />
         <module name="user-service" />
         <module name="discovery-server" />
+        <module name="pricefeed-service" />
         <module name="wallet-service" />
       </profile>
     </annotationProcessing>
@@ -19,6 +20,7 @@
       <module name="api-gateway" options="-parameters" />
       <module name="discovery-server" options="-parameters" />
       <module name="frontend-server" options="-parameters" />
+      <module name="pricefeed-service" options="-parameters" />
       <module name="user-service" options="-parameters" />
       <module name="wallet-service" options="-parameters" />
     </option>
