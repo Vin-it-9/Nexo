@@ -40,4 +40,15 @@ public class FallbackController {
 
         return Mono.just(ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body(response));
     }
+
+
+    @GetMapping("/pricefeed-service")
+    public Mono<ResponseEntity<Map<String, String>>> PriceFeedServiceFallback() {
+        Map<String, String> response = new HashMap<>();
+        response.put("status", "error");
+        response.put("message", "PriceFeed service is currently unavailable. Please try again later.");
+
+        return Mono.just(ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body(response));
+    }
+
 }

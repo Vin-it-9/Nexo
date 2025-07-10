@@ -51,6 +51,18 @@ spring:
                 name: frontendServerCircuitBreaker
                 fallbackUri: forward:/fallback/frontend-server
 
+        - id: PRICEFEED-SERVICE
+          uri: lb://PRICEFEED-SERVICE
+          predicates:
+            - Path=/api/prices/**,/api/market/**
+          filters:
+            - PreserveHostHeader
+            - StripPrefix=0
+            - name: CircuitBreaker
+              args:
+                name: frontendServerCircuitBreaker
+                fallbackUri: forward:/fallback/pricefeed-service
+
 
 
 # Circuit Breaker Configuration

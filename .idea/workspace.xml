@@ -4,30 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="241fc297-1d00-4d3d-9e43-6ba62b727a1a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/pricefeed-service/src/main/java/org/client/AlternativeApiClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pricefeed-service/src/main/java/org/client/CoinMarketCapClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pricefeed-service/src/main/java/org/client/NotificationClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pricefeed-service/src/main/java/org/controller/EnhancedPriceController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pricefeed-service/src/main/java/org/controller/PriceController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pricefeed-service/src/main/java/org/dto/CoinMarketCapResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pricefeed-service/src/main/java/org/dto/CryptoCurrency.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pricefeed-service/src/main/java/org/dto/NotificationRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pricefeed-service/src/main/java/org/dto/PriceResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pricefeed-service/src/main/java/org/kafka/PriceEventProducer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pricefeed-service/src/main/java/org/openapi/PricefeedApiApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pricefeed-service/src/main/java/org/scheduler/PriceUpdateScheduler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pricefeed-service/src/main/java/org/service/CacheEvictionService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pricefeed-service/src/main/java/org/service/FailoverPriceService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pricefeed-service/src/main/java/org/service/MarketAnalysisService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pricefeed-service/src/main/java/org/service/NotificationService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pricefeed-service/src/main/java/org/service/PriceService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pricefeed-service/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/git_toolbox_prj.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="241fc297-1d00-4d3d-9e43-6ba62b727a1a" name="Changes" comment="PriceFeed Service Done">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-gateway/src/main/java/org/nexo/apigateway/FallbackController.java" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/java/org/nexo/apigateway/FallbackController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/api-gateway/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pricefeed-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/pricefeed-service/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,22 +25,22 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "Vin-it-9"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Vin-it-9&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Vin-it-9/Nexo.git",
-    "accountId": "0a701ac8-763c-43f6-baaa-9e26fb6bcd1a"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Vin-it-9/Nexo.git&quot;,
+    &quot;accountId&quot;: &quot;0a701ac8-763c-43f6-baaa-9e26fb6bcd1a&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 8
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 8
+}</component>
   <component name="ProjectId" id="2zdrV4Tpb3BwIzKVK0LmIkBrm6s" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -73,8 +54,17 @@
     "Maven.pricefeed-service [clean,install...].executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "Quarkus.pricefeed-service.executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
+    "Spring Boot.Api-Gateway.executor": "Run",
+    "Spring Boot.DiscoveryServerApplication.executor": "Run",
+    "Spring Boot.FrontendServerApplication.executor": "Run",
+    "Spring Boot.UserService.executor": "Run",
+    "Spring Boot.WalletServiceApplication.executor": "Run",
     "git-widget-placeholder": "master",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -226,11 +216,25 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1752071813268</updated>
-      <workItem from="1752071816313" duration="11822000" />
+      <workItem from="1752071816313" duration="11876000" />
+      <workItem from="1752149489370" duration="8418000" />
     </task>
+    <task id="LOCAL-00001" summary="PriceFeed Service Done">
+      <option name="closed" value="true" />
+      <created>1752084938997</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1752084938998</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="PriceFeed Service Done" />
+    <option name="LAST_COMMIT_MESSAGE" value="PriceFeed Service Done" />
   </component>
 </project>
